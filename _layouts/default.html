@@ -45,6 +45,9 @@
               <img style="width:100%;max-width:100%" alt="profile photo" src="images/justin.png">
             </td>
           </tr>
+
+
+
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
           <tr>
             <td style="padding:2.5%;width:100%;vertical-align:middle">
@@ -55,16 +58,151 @@
         </table>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
 
+          {% for post in site.posts %}
+          {% for cat in post.categories %}
+          {% if cat == 'research' %}
+          <tr>
+            <td style="padding:2.5%;width:25%;vertical-align:middle;min-width:120px">
+              {% if post.image %}
+              <img src="{{post.image}}" alt="project image" style="width:auto; height:auto; max-width:100%;" />
+              {% endif %}
+
+              {% if post.animation %}
+              <video width="100%" height="100%" muted autoplay loop>
+                <source src="{{post.animation}}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              {% endif %}
+            </td>
+            <td style="padding:2.5%;width:75%;vertical-align:middle">
+              <h3>{{post.title}}</h3>
+              <br>
+              {{post.authors}}
+
+              <br>
+              <em>{{post.venue}}</em>, {{ post.date | date: "%Y" }}
+              <br>
+              {% if post.arxiv %}
+              <a href="{{post.website}}">website</a> /
+              {% endif %}
+              {% if post.arxiv %}
+              <a href="{{post.arxiv}}">arxiv</a> /
+              {% endif %}
+              {% if post.video %}
+              <a href="{{post.video}}">video</a> /
+              {% endif %}
+              {% if post.code %}
+              <a href="{{post.code}}">code</a>
+              {% endif %}
+              {% if post.poster %}
+              <a href="{{post.poster}}">poster</a> /
+              {% endif %}
+              {% if post.slides %}
+              <a href="{{post.slides}}">slides</a> /
+              {% endif %}
+              <p></p>
+              {{ post.excerpt }}
+            </td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+        </table>
+        <br>
+        <br>
+        <br>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
           <tr>
             <td style="padding:2.5%;width:100%;vertical-align:middle">
-              <h2>Project</h2>
-              <p></p>
+
+              <h2>Teaching</h2>
+              <p>Full lists and details about classes I have served as a teaching assistant in the past. Instructor names are listed based on the time I worked with them. Staff names are listed in alphebatical order based on their first names. Instructor names and staff names are separated by a semicolon. Instructor evaluation is attached if available.
+              </p>
             </td>
           </tr>
         </table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
 
+          {% for post in site.posts %}
+          {% for cat in post.categories %}
+          {% if cat == 'teaching' %}
+          <tr>
+            <td style="padding:2.5%;width:25%;vertical-align:middle;min-width:120px">
+              <img src="{{post.image}}" alt="teaching image" style="width:auto; height:auto; max-width:100%;" />
+            </td>
+            <td style="padding:2.5%;width:75%;vertical-align:middle">
+              <h3>{{post.title}}</h3>
+              <br>
+              {{post.staff}}
+              <br>
+              <em>{{post.course}} {{post.quarter}}</em>
+              <br>
+              {% if post.evaluation %}
+              <a href="{{post.evaluation}}">evaluation</a> /
+              {% endif %}
+              {% if post.website %}
+              <a href="{{post.website}}">website</a>
+              {% endif %}
+              <p></p>
+              {{ post.excerpt }}
+            </td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+        </table>
+        <br>
+        <br>
+        <br>
 
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tr>
+            <td style="padding:2.5%;width:100%;vertical-align:middle">
+              <h2>Other Projects</h2>
+              <p> These include courseworks, projects and other research-related work not for publishing. contents to be updated (10/11/2022). To remind myself what to put: DSC180 Capstone, DSC190 DataMining, COGS 108, MATH 189, DSC 102, DSC 106, COGS 189, DataHacks Adv, DataHacks Bus, Tencent, SS (CMU)
+              </p>
+            </td>
+          </tr>
+        </table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+
+          {% for post in site.posts %}
+          {% for cat in post.categories %}
+          {% if cat == 'others' %}
+          <tr>
+            <td style="padding:2.5%;width:25%;vertical-align:middle;min-width:120px">
+              <img src="{{post.image}}" alt="project image" style="width:auto; height:auto; max-width:100%;" />
+            </td>
+            <td style="padding:2.5%;width:75%;vertical-align:middle">
+              <h3>{{post.title}}</h3>
+              <br>
+              {{post.authors}}
+              <br>
+              <em>{{post.info}}</em>, {{ post.date | date: "%Y" }}
+              <br>
+              {% if post.website %}
+              <a href="{{post.website}}">website</a> /
+              {% endif %}
+              {% if post.paper %}
+              <a href="{{post.paper}}">paper</a> /
+              {% endif %}
+              {% if post.report %}
+              <a href="{{post.report}}">report</a> /
+              {% endif %}
+              {% if post.slides %}
+              <a href="{{post.slides}}">slides</a> /
+              {% endif %}
+              {% if post.code %}
+              <a href="{{post.code}}">code</a> /
+              {% endif %}
+              <p></p>
+              {{ post.excerpt }}
+            </td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+        </table>
 
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
           <tr>
@@ -79,6 +217,3 @@
       </td>
     </tr>
   </table>
-</body>
-
-</html>

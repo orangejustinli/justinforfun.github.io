@@ -1,0 +1,12 @@
+---
+layout: post
+image: /images/cogs189.png
+slides: https://docs.google.com/presentation/d/1gWNn4oP39EuuehwDprzVtAX38PpRgd7TR8WpTRARG3s/edit#slide=id.p
+title:  "EEG Transformer"
+authors: "<strong>Zirui Wang</strong>*, Xing Hong, Luning Yang, Annie Fan, Yunyi Huang, Zixin Ma"
+info: "COGS 189: Brain Computer Interfaces, UCSD"
+date:   2022-09-28 00:00:00 +00:00
+code: https://github.com/zwcolin/EEG-Transformer
+categories: others
+---
+We implement a naive EEG transformer that explores the possibility of using a ViT based transformer for inferring 3-class motor imagery based on multichannel time-series EEG data recorded at 1000 Hz for 8 seconds (in which 4 seconds are used). We propose future directions.
