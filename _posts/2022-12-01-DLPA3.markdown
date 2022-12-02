@@ -1,6 +1,6 @@
 ---
 layout: post
-image: /images/LSTM_Cell.jpg
+image: /images/LSTM_Cell.png
 report: https://drive.google.com/drive/folders/1gnfLIY5bq3Fc29mX45dIUwtkkIagBY3s
 title:  "COCO-2015 Image Caption Generation Using Encoder-Decoder Neural Network Architecture with CNN and LSTM"
 authors: "<strong>Zecheng Li</strong>, Wenqian Zhao, Lainey Liu, Mingkun Sun"
