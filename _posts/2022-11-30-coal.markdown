@@ -3,7 +3,7 @@ layout: post
 image: /images/coal-plant-sm.jpeg
 venue: "SSRN"
 title:  "Low-Carbon Transition Planning in China's Coal and Power Soes: Case of China Energy"
-authors: "Michael R. Davidson, Huizhong (Sonia) Tan (RA), Zecheng (Justin) Li (RA), and Kejun Chen (RA)"
+authors: "Michael R. Davidson, Huizhong (Sonia) Tan (RA), <strong>Zecheng (Justin) Li (RA)</strong>, and Kejun Chen (RA)"
 date:   2022-06-03 00:00:00 +00:00
 code: https://github.com/orangejustin
 website: https://mdavidson.org/papers/

@@ -1,0 +1,12 @@
+---
+layout: post
+image: /images/LSTM_Cell.jpg
+report: https://drive.google.com/drive/folders/1gnfLIY5bq3Fc29mX45dIUwtkkIagBY3s
+title:  "COCO-2015 Image Caption Generation Using Encoder-Decoder Neural Network Architecture with CNN and LSTM"
+authors: "<strong>Zecheng Li</strong>, Wenqian Zhao, Lainey Liu, Mingkun Sun"
+info: "Encoder-Decoder Neural Network Project of CSE151B"
+date: 2022-11-20 00:00:00 +00:00
+categories: others
+---
+This project focus on constructing an encoder-decoder neural network architecture
+that generates captions for the given image.
