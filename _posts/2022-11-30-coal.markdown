@@ -6,7 +6,7 @@ title:  "Low-Carbon Transition Planning in China's Coal and Power Soes: Case of 
 authors: "Michael R. Davidson, Huizhong (Sonia) Tan (RA), <strong>Zecheng (Justin) Li (RA)</strong>, and Kejun Chen (RA)"
 date:   2022-06-03 00:00:00 +00:00
 code: https://github.com/orangejustin
-website: https://mdavidson.org/papers/
+website: https://mdavidson.org/2022-06-03-low-carbon-transition-china-soe-china-energy/
 ssrn: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4124504
 categories: research
 ---
