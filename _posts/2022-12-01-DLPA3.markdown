@@ -7,6 +7,7 @@ authors: "<strong>Zecheng Li</strong>, Wenqian Zhao, Lainey Liu, Mingkun Sun"
 info: "Encoder-Decoder Neural Network Project of CSE151B"
 date: 2022-11-20 00:00:00 +00:00
 categories: others
+code:
 ---
 This project focus on constructing an encoder-decoder neural network architecture
 that generates captions for the given image.
