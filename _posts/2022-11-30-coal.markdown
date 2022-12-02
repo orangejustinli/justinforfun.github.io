@@ -6,7 +6,8 @@ title:  "Low-Carbon Transition Planning in China's Coal and Power Soes: Case of 
 authors: "Michael R. Davidson, Huizhong (Sonia) Tan (RA), Zecheng (Justin) Li (RA), and Kejun Chen (RA)"
 date:   2022-06-03 00:00:00 +00:00
 code: https://github.com/orangejustin
-arxiv: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4124504
+website: https://mdavidson.org/papers/
+ssrn: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4124504
 categories: research
 ---
 Delved into financial data from the Chinese coal industry to figure out the impact of command-and-control policies on the financial position of companies in the coal industry, as well as examine how these companies can reform and restructure to meet Carbon Neutrality while maintaining revenues.
