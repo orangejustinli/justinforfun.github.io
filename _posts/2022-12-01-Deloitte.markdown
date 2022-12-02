@@ -9,5 +9,5 @@ date: 2022-06-01 00:00:00 +00:00
 code: https://github.com/hluu01/Deloitte_Mentorship_Project
 categories: others
 ---
-We are studying the impact of the COVID-19 pandemic on the California job market. The code in the repo is my work, while the rest of my teammates work locally.
+We are studying the impact of the COVID-19 pandemic on the California job market. The code in Repo was done by me while the rest of my teammates were working locally.
 
