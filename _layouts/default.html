@@ -82,10 +82,10 @@
               <br>
               <em>{{post.venue}}</em>, {{ post.date | date: "%Y" }}
               <br>
-              {% if post.arxiv %}
+              {% if post.ssrn %}
               <a href="{{post.website}}">website</a> /
               {% endif %}
-              {% if post.arxiv %}
+              {% if post.ssrn %}
               <a href="{{post.arxiv}}">arxiv</a> /
               {% endif %}
               {% if post.video %}
