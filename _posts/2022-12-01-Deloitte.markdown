@@ -3,7 +3,7 @@ layout: post
 image: /images/Jobs.jpg
 slides: https://docs.google.com/presentation/d/1AmESfIwP0PooYUCCBjBmi7FgZhk6STycxdyOZFagqr4/edit?usp=sharing
 title:  "How the COVID-19 pandemic affected the California job market and what can we do to accommodate those changes."
-authors: "<strong>Zecheng Li</strong>, Phu Dang, Henry Luu, Cathy Wang, Justin Li, Kay Qu"
+authors: "<strong>Zecheng Li</strong>, Phu Dang, Henry Luu, Cathy Wang, Kay Qu"
 info: "Deloitte-HDSI's Program"
 date: 2022-06-01 00:00:00 +00:00
 code: https://github.com/hluu01/Deloitte_Mentorship_Project
