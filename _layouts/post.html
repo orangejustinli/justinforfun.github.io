@@ -1,3 +1,170 @@
----
-layout: default
----
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <title>{{ site.name }}</title>
+
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+  <meta name="author" content="{{ site.name }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+
+<body>
+  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+    <tr style="padding:0px">
+      <td style="padding:0px">
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tr style="padding:0px">
+            <td style="padding:2.5%;width:60%;vertical-align:middle">
+              <h1>
+                Zecheng Li (Justin)
+              </h1>
+              <p>I am a final year undergraduate student pursuing a BS in Mathematics-Economics at the <a href="https://economics.ucsd.edu/"> Department of Economics</a> and a BS in Cognitive Science with a specialization in Machine Learning at the <a href="https://cogsci.ucsd.edu/"> Department of Cognitive Science</a>, and a minor in Data Science at the <a href="https://datascience.ucsd.edu/"> Halicioglu Data Science Institute</a>. I am currently interested in the fields of machine learning, analytics, and econometrics. I am a data-driven person who never makes assumptions unless proven by data.
+              </p>
+              <p>I am a research assistant (starting in January 2022) under the supervision of <a href="https://mdavidson.org/about/">Prof Michael Davidson</a> in the <a href="https://mdavidson.org/">Davidson's Lab</a>. My research areas are the transition of Chinese state-owned coal companies to carbon neutrality and labor resettlement issues based on The Consequences of the Thermal Coal Phase-out in China.
+              </p>
+              <p>The best way to learn is to teach. Due to my interest in machine learning, I am now a teaching assistant for a hardcore upper unsupervised machine learning class <a href="https://catalog.ucsd.edu/courses/COGS.html#cogs118b">(Cogs 118b)</a>, helping students during my office hours and through Piazza.
+              </p>
+              <p><span class="bolded">I wish more people had a better chance of getting to know me through this site. Unfortunately, there are still many projects that  I would like to include on the site due to ongoing processes or privacy issues.</span> </p>
+              <p style="text-align:center">
+                <a target="_blank" href="mailto:zel012@ucsd.edu"> Email</a> &nbsp;/&nbsp;
+                <a href="https://github.com/orangejustin">GitHub</a> &nbsp;/&nbsp;
+<!--                <a href="https://scholar.google.com/citations?hl=en&user=djUTv7MAAAAJ">Google Scholar</a> &nbsp;/&nbsp;-->
+                <a href="https://www.linkedin.com/in/zecheng-li-664536213/"> LinkedIn </a>
+              </p>
+            </td>
+            <td style="padding:2.5%;width:40%;max-width:40%">
+              <img style="width:100%;max-width:100%" alt="profile photo" src="images/justin.png">
+            </td>
+          </tr>
+
+
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tr>
+            <td style="padding:2.5%;width:100%;vertical-align:middle">
+              <h2>Research</h2>
+              <p> Paper on labor resettlement based on the consequence of thermal coal phase-out in China is in progress.
+              </p>
+            </td>
+          </tr>
+        </table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+
+          {% for post in site.posts %}
+          {% for cat in post.categories %}
+          {% if cat == 'research' %}
+          <tr>
+            <td style="padding:2.5%;width:25%;vertical-align:middle;min-width:120px">
+              <img src="{{post.image}}" alt="project image" style="width:auto; height:auto; max-width:100%;" />
+            </td>
+            <td style="padding:2.5%;width:75%;vertical-align:middle">
+              <h3>{{post.title}}</h3>
+              <br>
+              {{post.authors}}
+              <br>
+              <em>{{post.venue}}</em>, {{ post.date | date: "%Y" }}
+              <br>
+              {% if post.website %}
+              <a href="{{post.website}}">website</a> /
+              {% endif %}
+              {% if post.ssrn %}
+              <a href="{{post.ssrn}}">ssrn</a> /
+              {% endif %}
+              {% if post.video %}
+              <a href="{{post.video}}">video</a> /
+              {% endif %}
+              {% if post.code %}
+              <a href="{{post.code}}">code</a>
+              {% endif %}
+              {% if post.poster %}
+              <a href="{{post.poster}}">poster</a> /
+              {% endif %}
+              {% if post.slides %}
+              <a href="{{post.slides}}">slides</a> /
+              {% endif %}
+              <p></p>
+              {{ post.excerpt }}
+            </td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+
+        <br>
+        <br>
+        <br>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tr>
+            <td style="padding:2.5%;width:100%;vertical-align:middle">
+              <h2>Projects</h2>
+              <p> Some are not listed and are still being processed.
+              </p>
+            </td>
+          </tr>
+        </table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+
+          {% for post in site.posts %}
+          {% for cat in post.categories %}
+          {% if cat == 'others' %}
+          <tr>
+            <td style="padding:2.5%;width:25%;vertical-align:middle;min-width:120px">
+              <img src="{{post.image}}" alt="project image" style="width:auto; height:auto; max-width:100%;" />
+            </td>
+            <td style="padding:2.5%;width:75%;vertical-align:middle">
+              <h3>{{post.title}}</h3>
+              <br>
+              {{post.authors}}
+              <br>
+              <em>{{post.info}}</em>, {{ post.date | date: "%Y" }}
+              <br>
+              {% if post.website %}
+              <a href="{{post.website}}">website</a> /
+              {% endif %}
+              {% if post.paper %}
+              <a href="{{post.paper}}">paper</a> /
+              {% endif %}
+              {% if post.report %}
+              <a href="{{post.report}}">report</a> /
+              {% endif %}
+              {% if post.slides %}
+              <a href="{{post.slides}}">slides</a> /
+              {% endif %}
+              {% if post.code %}
+              <a href="{{post.code}}">code</a>
+              {% endif %}
+              <p></p>
+              {{ post.excerpt }}
+            </td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+        </table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tr>
+            <td style="padding:0px">
+              <br>
+              <p style="text-align:center;font-size:small;">
+                Design and source code from <a style="font-size:small;" href="https://jonbarron.info">Jon Barron's website</a>. Forked from the <a href="https://github.com/leonidk/new_website">Jekyll varient</a> by Leonid Keselman.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
