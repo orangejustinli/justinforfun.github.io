@@ -1,0 +1,13 @@
+---
+layout: post
+image: /images/bert.jpg
+report: https://drive.google.com/file/d/1eHzka_B4zGXVGLzSn_b-R3y506i8MVqy/view?usp=sharing
+title:  "Pre-trained BERT Text Classification Application with Amazon-Massive-Intent Dataset"
+authors: "Wenqian, Keyu, Xiaotong, Yunze, <strong>Zecheng Li</strong>"
+info: "Encoder-Decoder Neural Network with pre-trained BERT"
+date: 2022-11-30 00:00:00 +00:00
+categories: others
+code: https://github.com/orangejustin/cse-151b-pa4-relxgen5
+---
+This project focus on constructing an encoder-decoder neural network architecture
+that generates captions for the given image.
