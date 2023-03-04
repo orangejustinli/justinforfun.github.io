@@ -1,8 +1,9 @@
 ---
 layout: post
 image: /images/resettlement.jpg
+venue: "Davidson Lab"
 title: "Labor Resettlement of Coal SOEs in China"
-authors: "<strong>Zecheng (Justin) Li"
+authors: "<strong>Zecheng (Justin) Li (RA)</strong>"
 date:   2022-11-03 00:00:00 +00:00
 website: https://mdavidson.org/research/
 slides: https://docs.google.com/presentation/d/1c8RLApPiN00KPKlqiZtHs8Hmzm76PfoM/edit?usp=sharing&ouid=113433783715034268675&rtpof=true&sd=true
