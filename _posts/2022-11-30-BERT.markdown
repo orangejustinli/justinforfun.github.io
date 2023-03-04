@@ -9,5 +9,4 @@ date: 2022-11-30 00:00:00 +00:00
 categories: others
 code: https://github.com/orangejustin/cse-151b-pa4-relxgen5
 ---
-This project focus on constructing an encoder-decoder neural network architecture
-that generates captions for the given image.
+This project is about using a type of artificial intelligence called BERT to understand what people are trying to say. Specifically, the project focuses on classifying different types of text based on their meaning or intent. For example, if someone types "I want to order a pizza," the BERT model will recognize that the intent is to order food. The model uses pre-existing knowledge to do this, which has been gained through being trained on a large amount of data beforehand.
