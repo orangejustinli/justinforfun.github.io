@@ -10,7 +10,10 @@ slides: https://docs.google.com/presentation/d/1c8RLApPiN00KPKlqiZtHs8Hmzm76PfoM
 workshop: https://drive.google.com/file/d/1p7008eJOfdatf4tOru0b22nNdBwWau3S/view?usp=sharing
 categories: research
 ---
-This article examines the challenges and policies surrounding worker resettlement in the Chinese coal sector, which has undergone significant contraction in recent years due to the need to achieve climate policy goals. State-owned enterprises dominate the sector, and the displacement of workers has important implications for both the affected workers and the achievement of climate action goals. The article provides insights into the strategies employed by SOEs to address workforce contraction, including internal and external resettlement, job fairs, vocational training, and contract termination. The findings highlight the varied outcomes of worker resettlement programs and the importance of government support in addressing the challenges posed by the contraction of the coal sector.
+This article discusses the challenges and strategies for worker resettlement in China's coal sector, which has undergone significant contraction in response to climate policy goals. State-owned enterprises dominate the sector, and their actions on worker displacement will have important implications for both displaced workers and climate action. The article presents case studies of SOE worker resettlement programs and identifies common categories of disposition options for displaced workers, such as internal and external resettlement and contract termination. The article highlights the need for continued government support for displaced workers, particularly given the contracting coal sector and changing workforce demographics.
+
+
+
 
 
 
