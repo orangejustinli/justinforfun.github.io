@@ -3,13 +3,17 @@ layout: post
 image: /images/resettlement.jpg
 venue: "Davidson Lab"
 title: "Labor Resettlement of Coal SOEs in China"
-authors: "<strong>Zecheng (Justin) Li</strong>"
-date:   2022-11-03 00:00:00 +00:00
+authors: "Michael Davidson, Expert research assistance was provided by: Kejun Chen, <strong>Zecheng (Justin) Li</strong>, and Yumeng Liu."
+date: 2023-02-03 00:00:00 +00:00
 website: https://mdavidson.org/research/
 slides: https://docs.google.com/presentation/d/1c8RLApPiN00KPKlqiZtHs8Hmzm76PfoM/edit?usp=sharing&ouid=113433783715034268675&rtpof=true&sd=true
+workshop: https://drive.google.com/file/d/1p7008eJOfdatf4tOru0b22nNdBwWau3S/view?usp=sharing
 categories: research
 ---
-This presentation covers the labor resettlement of state-owned coal enterprises in China, examining 7 cases and highlighting the difficulties faced by employees in finding new jobs, such as limited skills and education. The use of visual plots, such as pie charts, helps to illustrate the proportion of labor resettlement solutions adopted by these companies.
+This article examines the challenges and policies surrounding worker resettlement in the Chinese coal sector, which has undergone significant contraction in recent years due to the need to achieve climate policy goals. State-owned enterprises dominate the sector, and the displacement of workers has important implications for both the affected workers and the achievement of climate action goals. The article provides insights into the strategies employed by SOEs to address workforce contraction, including internal and external resettlement, job fairs, vocational training, and contract termination. The findings highlight the varied outcomes of worker resettlement programs and the importance of government support in addressing the challenges posed by the contraction of the coal sector.
+
+
+
 
 
 
