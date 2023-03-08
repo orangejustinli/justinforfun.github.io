@@ -48,7 +48,7 @@ url: "http://orangejustinli.github.io" # the base hostname & protocol for your s
 # (http://yourusername.github.io/repository-name)
 # and NOT your User repository (http://yourusername.github.io)
 # then add in the baseurl here, like this: "/repository-name"
-#baseurl: "/justinforfun"
+baseurl: "/justinforfun"
 
 #
 # !! You don't need to change any of the configuration flags below !!
