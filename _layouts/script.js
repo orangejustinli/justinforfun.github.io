@@ -132,7 +132,6 @@ $(document).ready(function() {
         card.style.display = 'none';
       }
     });
-});
-
+  });
 
 });
