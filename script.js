@@ -36,7 +36,7 @@ var progress  = 0;
 var requestId = null;
 var reversed  = true;
 
-cloneCards(20);
+cloneCards(0);
 update();
 window.addEventListener("scroll", requestUpdate);
 
@@ -107,20 +107,19 @@ $(document).ready(function() {
     });
   });
 
+  // Define the search form element
+  const searchForm = document.getElementById('search-form');
 
-  // Define the search input element
-  const searchInput = document.getElementById('search-input');
+  // Add an event listener to the search form element
+  searchForm.addEventListener('submit', event => {
+    // Prevent the form from submitting and refreshing the page
+    event.preventDefault();
 
-  // Define the cards container element
-  const cardsContainer = document.querySelector('main');
-
-  // Add an event listener to the search input element
-  searchInput.addEventListener('input', () => {
     // Get the search value
-    const searchTerm = searchInput.value.toLowerCase();
+    const searchTerm = searchForm.q.value.toLowerCase();
 
     // Get all the cards
-    const cards = cardsContainer.querySelectorAll('.card');
+    const cards = document.querySelectorAll('.card');
 
     // Loop through each card and check if it contains the search term
     cards.forEach(card => {
@@ -133,5 +132,7 @@ $(document).ready(function() {
         card.style.display = 'none';
       }
     });
-  });
+});
+
+
 });
