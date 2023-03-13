@@ -3,14 +3,12 @@ layout: default
 title: My Cards
 ---
 
-<div class="card-list">
+<main class="card-list">
   {% for card in site.cards %}
-    <div class="card">
+    <article class="card">
       <h2><a href="{{ site.baseurl }}{{ card.url }}">{{ card.title }}</a></h2>
-      <div class="card-description">
-        {{ card.description }}
-      </div>
+      <p class="card-description">{{ card.description }}</p>
       <a href="{{ site.baseurl }}{{ card.url }}" class="card-read-more">Read More</a>
-    </div>
+    </article>
   {% endfor %}
-</div>
+</main>
