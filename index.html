@@ -1,18 +1,16 @@
 ---
 layout: default
+title: My Cards
 ---
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
-
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-
-      <div class="entry">
-        {{ post.excerpt }}
+<div class="card-list">
+  {% for card in site.cards %}
+    <div class="card">
+      <h2><a href="{{ site.baseurl }}{{ card.url }}">{{ card.title }}</a></h2>
+      <div class="card-description">
+        {{ card.description }}
       </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
+      <a href="{{ site.baseurl }}{{ card.url }}" class="card-read-more">Read More</a>
+    </div>
   {% endfor %}
 </div>
