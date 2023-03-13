@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<main>
+  <header id="app-header" class="app-header">
+
+    <title>{{ justin: Work & Love & Eat }}</title>
+
+    <div class="background-container">
+      <div id="background-back" class="background"></div>
+      <div id="background-front" class="background"></div>
+    </div>
+
+    <div class="header-content">
+      <div id="small-toolbar" class="app-toolbar">
+
+        <div class="icon-button">
+          <div class="icon">
+            <i class="material-icons">menu</i>
+          </div>
+        </div>
+
+        <div id="small-title" class="small-title">Zecheng Li</div>
+
+
+        <div class="icon-button">
+          <form id="search-form">
+            <div class="icon-button-display">
+              <i class="material-icons icon">search</i>
+              <input type="search" class="search-input" name="q" placeholder="Search...">
+            </div>
+          </form>
+        </div>
+
+        <div class="icon-button">
+          <div class="icon">
+            <i class="material-icons">more_vert</i>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div id="large-toolbar" class="app-toolbar tall">
+        <div id="large-title" class="large-title">Justin</div>
+      </div>
+    </div>
+
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<!--    <link rel="stylesheet" href="style2.css">-->
+<!--    <link rel="stylesheet" href="search.css">-->
+    <link rel="stylesheet" type="text/css" href="style2.css" />
+    <link rel="stylesheet" type="text/css" href="search.css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  </header>
+
+  <div class="card">
+
+    <div class="card-title"><h2>Bio & fun </h2></div>
+    <p>I am a final year undergraduate student pursuing a BS in Mathematics-Economics at the <a href="https://economics.ucsd.edu/"> Department of Economics</a> and a BS in Cognitive Science with a specialization in Machine Learning at the <a href="https://cogsci.ucsd.edu/"> Department of Cognitive Science</a>, and a minor in Data Science at the <a href="https://datascience.ucsd.edu/"> Halicioglu Data Science Institute</a>. I am currently interested in the fields of machine learning, analytics, and econometrics. I am a data-driven person who never makes assumptions unless proven by data.
+    </p>
+
+  </div>
+
+  <div class="card">
+
+    <div class="card-title"><h2>Study & Work</h2></div>
+
+    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+      <tr>
+        <td style="padding:2.5%;width:100%;vertical-align:middle">
+<!--          <h2>Justin's Schedule</h2>-->
+          <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23F09300&ctz=America%2FLos_Angeles&src=emVsMDEyQHVjc2QuZWR1&color=%23039BE5" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title"><h2>Food & Workout</h2></div>
+
+    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tr>
+            <td style="padding:2.5%;width:100%;vertical-align:middle">
+<!--              <h2>Food & Workout</h2>-->
+              <iframe src="https://docs.google.com/spreadsheets/d/1e4swhRbXSyqmBRYa2dsVFmXnndMT28DpZ-b-QsPuUDM/edit?usp=sharing" style="border:solid 1px #777" width="800" height="710" frameborder="0" scrolling="no"></iframe>
+            </td>
+          </tr>
+        </table>
+
+  </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+  <script src="script.js"></script>
+</main>
+
+</html>
