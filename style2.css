@@ -177,3 +177,7 @@ h2 {
   /*font-weight: normal;*/
   /*display:inline;*/
 }
+
+.highlighted {
+  background-color: yellow;
+}

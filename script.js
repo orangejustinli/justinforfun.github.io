@@ -107,31 +107,35 @@ $(document).ready(function() {
     });
   });
 
-  // Define the search form element
-  const searchForm = document.getElementById('search-form');
+  // Search functionality
+  $('#search-form').submit(function(event) {
+    event.preventDefault(); // Prevent form from submitting
 
-  // Add an event listener to the search form element
-  searchForm.addEventListener('submit', event => {
-    // Prevent the form from submitting and refreshing the page
-    event.preventDefault();
+    var searchQuery = $('.search-input').val().toLowerCase(); // Get search query
 
-    // Get the search value
-    const searchTerm = searchForm.q.value.toLowerCase();
+    $('.card').hide(); // Hide all cards
 
-    // Get all the cards
-    const cards = document.querySelectorAll('.card');
+    $('.card').each(function() {
+      var cardTitle = $(this).find('.card-title h2').text().toLowerCase(); // Get card title
 
-    // Loop through each card and check if it contains the search term
-    cards.forEach(card => {
-      const cardTitle = card.querySelector('.card-title').textContent.toLowerCase();
-      const cardContent = card.querySelector('p').textContent.toLowerCase();
-
-      if (cardTitle.includes(searchTerm) || cardContent.includes(searchTerm)) {
-        card.style.display = 'block';
+      if (cardTitle.indexOf(searchQuery) >= 0) { // Check if search query is found in card title
+        $(this).show(); // Show card if search query is found in title
+        $(this).find('.card-title h2').html(function(_, html) {
+          return html.replace(new RegExp(searchQuery, "gi"), '<span class="highlighted">$&</span>'); // Highlight search query in card title
+        });
       } else {
-        card.style.display = 'none';
+        var cardContent = $(this).find('.card-content').text().toLowerCase(); // Get card content
+
+        if (cardContent.indexOf(searchQuery) >= 0) { // Check if search query is found in card content
+          $(this).show(); // Show card if search query is found in content
+          $(this).find('.card-content').html(function(_, html) {
+            return html.replace(new RegExp(searchQuery, "gi"), '<span class="highlighted">$&</span>'); // Highlight search query in card content
+          });
+        }
       }
     });
+
+    $('.search-input').val(''); // Clear search input
   });
 
 });
