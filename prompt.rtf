@@ -1,0 +1,128 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;\f2\fmodern\fcharset0 Courier-BoldOblique;
+}
+{\colortbl;\red255\green255\blue255;\red109\green109\blue109;\red32\green32\blue32;\red191\green100\blue38;
+\red153\green168\blue186;\red133\green96\blue154;\red254\green187\blue91;\red88\green118\blue71;\red86\green132\blue173;
+\red225\green179\blue88;}
+{\*\expandedcolortbl;;\csgenericrgb\c42745\c42745\c42745;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c74902\c39216\c14902;
+\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c52157\c37647\c60392;\csgenericrgb\c99608\c73333\c35686;\csgenericrgb\c34510\c46275\c27843;\csgenericrgb\c33725\c51765\c67843;
+\csgenericrgb\c88235\c70196\c34510;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 ======TO do list prompts======\
+===== priority ======\
+\
+Good. Next. I want to make a function called priority for the to-do list function\
+\
+1.	you can click the task to change its priority \
+2.	if there are n tasks, there are n priorities. For example, I create 5 task. There will be 5 priority ranking from priority #1 to priority #5.\
+3.	Every time I delete a task, the number of the priority changes. For example, if there are 5 tasks and 5 priorities, I delete one task and then the total number of priority will be 4. \
+4.	I can click the task to select its priority. For example, if there are 5 tasks, and there will be 5 priority ranking from priority #1 to priority #5. And if I choose the priority to priority#1the task will be shift to the first place. And if I choose the priority to priority#5, the task will be shift to the final/last place.\
+\
+Modify from the previous to-do function:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1\fs32 \cf2 \cb3 //////////////////// //////////////////// ////////////////////\
+////////////////// To-Do list  ////////////////////\
+/////////////////// //////////////////// ////////////////////\
+\
+\
+// Load any existing items from local storage\
+\cf4 var \cf5 items = 
+\f2\i\b \cf6 JSON
+\f1\i0\b0 \cf5 .\cf7 parse\cf5 (
+\f2\i\b \cf6 localStorage
+\f1\i0\b0 \cf5 .\cf7 getItem\cf5 (\cf8 "todoList"\cf5 )) || []\cf4 ;\
+for \cf5 (\cf4 var \cf5 i = \cf9 0\cf4 ; \cf5 i < items.\cf6 length\cf4 ; \cf5 i++) \{\
+  \cf7 addItem\cf5 (items[i].\cf6 value\cf4 , \cf5 items[i].\cf6 completed\cf4 , \cf5 items[i].\cf6 date\cf5 )\cf4 ;\
+\cf5 \}\
+\
+\cf2 // Add new item to list when form is submitted\
+\cf6 $\cf5 (\cf8 "form"\cf5 ).\cf7 submit\cf5 (\cf4 function\cf5 (e) \{\
+  e.\cf7 preventDefault\cf5 ()\cf4 ;\
+  var \cf5 newItem = \cf6 $\cf5 (\cf8 "#new-item"\cf5 ).\cf7 val\cf5 ().\cf7 trim\cf5 ()\cf4 ;\
+  if \cf5 (newItem !== \cf8 ""\cf5 ) \{\
+    \cf7 addItem\cf5 (newItem\cf4 , false, \cf7 getCurrentDate\cf5 ())\cf4 ;\
+    \cf2 // Save updated list to local storage\
+    \cf7 saveList\cf5 ()\cf4 ;\
+    \cf6 $\cf5 (\cf8 "#new-item"\cf5 ).\cf7 val\cf5 (\cf8 ""\cf5 )\cf4 ;\
+  \cf5 \}\
+\})\cf4 ;\
+\
+\cf2 // Cross out item when checkbox is clicked\
+\cf6 $\cf5 (
+\f2\i\b \cf6 document
+\f1\i0\b0 \cf5 ).\cf7 on\cf5 (\cf8 "click"\cf4 , \cf8 "input[type=checkbox]"\cf4 , function\cf5 () \{\
+  \cf4 var \cf5 checkbox = \cf6 $\cf5 (\cf4 this\cf5 )\cf4 ;\
+  var \cf5 listItem = checkbox.\cf7 closest\cf5 (\cf8 "\cf10 li\cf8 "\cf5 )\cf4 ;\
+  \cf5 listItem.\cf7 toggleClass\cf5 (\cf8 "completed"\cf5 )\cf4 ;\
+  \cf2 // Save updated list to local storage\
+  \cf7 saveList\cf5 ()\cf4 ;\
+\cf5 \})\cf4 ;\
+\
+\cf2 // Delete item when delete button is clicked\
+\cf6 $\cf5 (
+\f2\i\b \cf6 document
+\f1\i0\b0 \cf5 ).\cf7 on\cf5 (\cf8 "click"\cf4 , \cf8 ".delete-button"\cf4 , function\cf5 () \{\
+  \cf4 var \cf5 listItem = \cf6 $\cf5 (\cf4 this\cf5 ).\cf7 closest\cf5 (\cf8 "\cf10 li\cf8 "\cf5 )\cf4 ;\
+  \cf5 listItem.\cf7 remove\cf5 ()\cf4 ;\
+  \cf2 // Save updated list to local storage\
+  \cf7 saveList\cf5 ()\cf4 ;\
+\cf5 \})\cf4 ;\
+\
+function \cf7 addItem\cf5 (text\cf4 , \cf5 completed\cf4 , \cf5 date) \{\
+  \cf4 var \cf5 checkbox = \cf6 $\cf5 (\cf8 "<input>"\cf5 ).\cf7 attr\cf5 (\{\
+    \cf6 type\cf5 : \cf8 "checkbox"\cf4 ,\
+    \cf6 class\cf5 : \cf8 "checkbox"\cf4 ,\
+    \cf6 checked\cf5 : completed\
+  \})\cf4 ;\
+  var \cf5 deleteButton = \cf6 $\cf5 (\cf8 "<button>"\cf5 ).\cf7 attr\cf5 (\{\
+    \cf6 type\cf5 : \cf8 "button"\cf4 ,\
+    \cf6 class\cf5 : \cf8 "delete-button"\
+  \cf5 \}).\cf7 html\cf5 (\cf8 "<i class='material-icons'>delete</i>"\cf5 )\cf4 ;\
+  var \cf5 textSpan = \cf6 $\cf5 (\cf8 "<span>"\cf5 ).\cf7 addClass\cf5 (\cf8 "todo-text"\cf5 ).\cf7 text\cf5 (text)\cf4 ;\
+  var \cf5 dateSpan = \cf6 $\cf5 (\cf8 "<span>"\cf5 ).\cf7 addClass\cf5 (\cf8 "date"\cf5 ).\cf7 text\cf5 (date)\cf4 ;\
+  var \cf5 listItem = \cf6 $\cf5 (\cf8 "<li>"\cf5 ).\cf7 addClass\cf5 (\cf8 "todo-item"\cf5 ).\cf7 append\cf5 (checkbox\cf4 , \cf5 textSpan\cf4 , \cf5 dateSpan\cf4 , \cf5 deleteButton)\cf4 ;\
+  if \cf5 (completed) \{\
+    listItem.\cf7 addClass\cf5 (\cf8 "completed"\cf5 )\cf4 ;\
+  \cf5 \}\
+  \cf6 $\cf5 (\cf8 "#todo-list"\cf5 ).\cf7 append\cf5 (listItem)\cf4 ;\
+\cf5 \}\
+\
+\cf4 function \cf7 saveList\cf5 () \{\
+  \cf4 var \cf5 items = []\cf4 ;\
+  \cf6 $\cf5 (\cf8 "#todo-list \cf10 li\cf8 "\cf5 ).\cf7 each\cf5 (\cf4 function\cf5 () \{\
+    \cf4 var \cf5 listItem = \cf6 $\cf5 (\cf4 this\cf5 )\cf4 ;\
+    var \cf5 checkbox = listItem.\cf7 find\cf5 (\cf8 ".checkbox"\cf5 )\cf4 ;\
+    \cf5 items.\cf7 push\cf5 (\{\
+      \cf6 value\cf5 : listItem.\cf7 find\cf5 (\cf8 "span:first-of-type"\cf5 ).\cf7 text\cf5 ()\cf4 ,\
+      \cf6 completed\cf5 : checkbox.\cf7 is\cf5 (\cf8 ":checked"\cf5 )\cf4 ,\
+      \cf6 date\cf5 : listItem.\cf7 find\cf5 (\cf8 ".date"\cf5 ).\cf7 text\cf5 ()\
+    \})\cf4 ;\
+  \cf5 \})\cf4 ;\
+  
+\f2\i\b \cf6 localStorage
+\f1\i0\b0 \cf5 .\cf7 setItem\cf5 (\cf8 "todoList"\cf4 , 
+\f2\i\b \cf6 JSON
+\f1\i0\b0 \cf5 .\cf7 stringify\cf5 (items))\cf4 ;\
+\cf5 \}\
+\
+\cf4 function \cf7 getCurrentDate\cf5 () \{\
+  \cf4 var \cf5 today = \cf4 new 
+\f2\i\b \cf6 Date
+\f1\i0\b0 \cf5 ()\cf4 ;\
+  var \cf5 dd = \cf7 String\cf5 (today.\cf7 getDate\cf5 ()).\cf7 padStart\cf5 (\cf9 2\cf4 , \cf8 "0"\cf5 )\cf4 ;\
+  var \cf5 mm = \cf7 String\cf5 (today.\cf7 getMonth\cf5 () + \cf9 1\cf5 ).\cf7 padStart\cf5 (\cf9 2\cf4 , \cf8 "0"\cf5 )\cf4 ; \cf2 //January is 0!\
+  \cf4 var \cf5 yyyy = today.\cf7 getFullYear\cf5 ()\cf4 ;\
+  \cf5 today = mm + \cf8 "/" \cf5 + dd + \cf8 "/" \cf5 + yyyy\cf4 ;\
+  return \cf5 today\cf4 ;\
+\cf5 \}\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+======\
+\
+\
+======= \
+}

@@ -40,16 +40,14 @@
 
       </div>
 
-
       <div id="large-toolbar" class="app-toolbar tall">
         <div id="large-title" class="large-title">Justin</div>
       </div>
+
     </div>
 
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-<!--    <link rel="stylesheet" href="style2.css">-->
-<!--    <link rel="stylesheet" href="search.css">-->
     <link rel="stylesheet" type="text/css" href="style2.css" />
     <link rel="stylesheet" type="text/css" href="search.css" />
 
@@ -60,19 +58,45 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
   </header>
 
+<!--  card -->
+
   <div class="card">
 
     <div class="card-title"><h2>Bio & fun </h2></div>
     <p>I am a final year undergraduate student pursuing a BS in Mathematics-Economics at the <a href="https://economics.ucsd.edu/"> Department of Economics</a> and a BS in Cognitive Science with a specialization in Machine Learning at the <a href="https://cogsci.ucsd.edu/"> Department of Cognitive Science</a>, and a minor in Data Science at the <a href="https://datascience.ucsd.edu/"> Halicioglu Data Science Institute</a>. I am currently interested in the fields of machine learning, analytics, and econometrics. I am a data-driven person who never makes assumptions unless proven by data.
     </p>
+  </div>
+
+<!--  To-Do list-->
+  <div class="card">
+
+    <div class="card-title"><h2>To & Dos</h2></div>
+
+    <form style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:18px;">
+      <input type="text" id="new-item" placeholder="New priority">
+      <button type="submit">Add</button>
+    </form>
+
+    <ul id="todo-list"></ul>
+
 
   </div>
 
+
+<!--  inspiration -->
+  <div class="card">
+    <div class="card-title"><h2>Ideas & Words</h2></div>
+     <p>
+       "Don't use your energy to worry. Use your energy to believe, create, trust, grow, manifest, and heal."
+     </p>
+  </div>
+
+<!--  Calendar-->
   <div class="card">
 
     <div class="card-title"><h2>Study & Work</h2></div>
 
-    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+     <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
       <tr>
         <td style="padding:2.5%;width:100%;vertical-align:middle">
 <!--          <h2>Justin's Schedule</h2>-->
@@ -85,10 +109,9 @@
 
 
   <div class="card">
-
     <div class="card-title"><h2>Food & Workout</h2></div>
 
-    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
           <tr>
             <td style="padding:2.5%;width:100%;vertical-align:middle">
 <!--              <h2>Food & Workout</h2>-->
@@ -96,11 +119,10 @@
             </td>
           </tr>
         </table>
-
   </div>
 
 
-
+  <link rel="stylesheet" type="text/css" href="style2.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
   <script src="script.js"></script>

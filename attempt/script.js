@@ -74,8 +74,15 @@ function cloneCards(count) {
   }
 }
 
+//////////////////// //////////////////// ////////////////////
+////////////////// ready to function  ////////////////////
+/////////////////// //////////////////// ///////////////////
+
 $(document).ready(function() {
 
+  //////////////////// //////////////////// ////////////////////
+  ////////////////// scroll function  ////////////////////
+  /////////////////// //////////////////// ///////////////////
   $(window).scroll(function() {
     var scroll = $(window).scrollTop();
     var windowHeight = $(window).height();
@@ -107,7 +114,10 @@ $(document).ready(function() {
     });
   });
 
-  // Search functionality
+  //////////////////// //////////////////// ////////////////////
+  ////////////////// Search functionality  ////////////////////
+  /////////////////// //////////////////// ////////////////////
+
   $('#search-form').submit(function(event) {
     event.preventDefault(); // Prevent form from submitting
 
@@ -144,5 +154,86 @@ $(document).ready(function() {
     $('#search-form input[type="search"]').val('');  // Clear search input
   });
 
+  //////////////////// //////////////////// ////////////////////
+  ////////////////// To-Do list  ////////////////////
+  /////////////////// //////////////////// ////////////////////
+
+
+  // Load any existing items from local storage
+  var items = JSON.parse(localStorage.getItem("todoList")) || [];
+  for (var i = 0; i < items.length; i++) {
+    addItem(items[i].value, items[i].completed, items[i].date);
+  }
+
+  // Add new item to list when form is submitted
+  $("form").submit(function(e) {
+    e.preventDefault();
+    var newItem = $("#new-item").val().trim();
+    if (newItem !== "") {
+      addItem(newItem, false, getCurrentDate());
+      // Save updated list to local storage
+      saveList();
+      $("#new-item").val("");
+    }
+  });
+
+  // Cross out item when checkbox is clicked
+  $(document).on("click", "input[type=checkbox]", function() {
+    var checkbox = $(this);
+    var listItem = checkbox.closest("li");
+    listItem.toggleClass("completed");
+    // Save updated list to local storage
+    saveList();
+  });
+
+  // Delete item when delete button is clicked
+  $(document).on("click", ".delete-button", function() {
+    var listItem = $(this).closest("li");
+    listItem.remove();
+    // Save updated list to local storage
+    saveList();
+  });
+
+  function addItem(text, completed, date) {
+    var checkbox = $("<input>").attr({
+      type: "checkbox",
+      class: "checkbox",
+      checked: completed
+    });
+    var deleteButton = $("<button>").attr({
+      type: "button",
+      class: "delete-button"
+    }).html("<i class='material-icons'>delete</i>");
+    var textSpan = $("<span>").addClass("todo-text").text(text);
+    var dateSpan = $("<span>").addClass("date").text(date);
+    var listItem = $("<li>").addClass("todo-item").append(checkbox, textSpan, dateSpan, deleteButton);
+    if (completed) {
+      listItem.addClass("completed");
+    }
+    $("#todo-list").append(listItem);
+  }
+
+  function saveList() {
+    var items = [];
+    $("#todo-list li").each(function() {
+      var listItem = $(this);
+      var checkbox = listItem.find(".checkbox");
+      items.push({
+        value: listItem.find("span:first-of-type").text(),
+        completed: checkbox.is(":checked"),
+        date: listItem.find(".date").text()
+      });
+    });
+    localStorage.setItem("todoList", JSON.stringify(items));
+  }
+
+  function getCurrentDate() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = today.getFullYear();
+    today = mm + "/" + dd + "/" + yyyy;
+    return today;
+  }
 
 });

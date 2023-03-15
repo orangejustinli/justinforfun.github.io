@@ -178,4 +178,96 @@ h2 {
   /*display:inline;*/
 }
 
+/* To-do list styles */
+#todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+#todo-list li {
+  display: flex;
+  align-items: center;
+  /*margin: 0.5rem 0;*/
+  font-size: 1.8rem;
+  position: relative;
+  margin-left: 1.1rem;
+}
+
+#todo-list li.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.todo-item {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1.8rem;
+  margin-left:100px
+}
+
+.checkbox {
+  margin-right: 1.5rem;
+}
+
+.delete-item {
+  font-size: 1.2rem;
+  padding: 0.2rem 0.4rem;
+  margin-right: 0.5rem;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete-button {
+  font-size: 3px; /* adjust to your preferred size */
+  padding: 2px; /* adjust to your preferred padding */
+  margin-left: 15px; /* adjust to your preferred margin */
+  cursor: pointer;
+}
+
+.delete-item:hover {
+  background-color: #c0392b;
+}
+
+input[type=checkbox] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
+}
+
+input[type=checkbox]:checked {
+  background-color: #FFA500;
+  border-color: #FFA500;
+}
+
+input[type=checkbox]:hover {
+  background-color: #f1f1f1;
+}
+
+#new-item {
+  width: 16%; /* adjust to your preferred size */
+  padding: 0.5rem; /* adjust to your preferred padding */
+  font-size: 18px; /* adjust to your preferred font size */
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  margin-right: 1rem;
+}
+
+/*to-do list data*/
+.date {
+  font-size: 1.4rem;
+  color: #bbb;
+  margin-left: 1.5rem;
+}
 
