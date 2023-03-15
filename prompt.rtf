@@ -1,18 +1,19 @@
 {\rtf1\ansi\ansicpg1252\cocoartf2639
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;\f2\fmodern\fcharset0 Courier-BoldOblique;
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 HelveticaNeue;\f2\fmodern\fcharset0 Courier;
 }
-{\colortbl;\red255\green255\blue255;\red109\green109\blue109;\red32\green32\blue32;\red191\green100\blue38;
-\red153\green168\blue186;\red133\green96\blue154;\red254\green187\blue91;\red88\green118\blue71;\red86\green132\blue173;
-\red225\green179\blue88;}
-{\*\expandedcolortbl;;\csgenericrgb\c42745\c42745\c42745;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c74902\c39216\c14902;
-\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c52157\c37647\c60392;\csgenericrgb\c99608\c73333\c35686;\csgenericrgb\c34510\c46275\c27843;\csgenericrgb\c33725\c51765\c67843;
-\csgenericrgb\c88235\c70196\c34510;}
-\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+{\colortbl;\red255\green255\blue255;\red199\green203\blue211;\red109\green109\blue109;\red32\green32\blue32;
+\red225\green179\blue88;\red172\green172\blue172;\red149\green184\blue79;\red153\green168\blue186;}
+{\*\expandedcolortbl;;\cssrgb\c81961\c83529\c85882;\csgenericrgb\c42745\c42745\c42745;\csgenericrgb\c12549\c12549\c12549;
+\csgenericrgb\c88235\c70196\c34510;\csgenericrgb\c67451\c67451\c67451;\csgenericrgb\c58431\c72157\c30980;\csgenericrgb\c60000\c65882\c72941;}
+\margl1440\margr1440\vieww12260\viewh14600\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 ======TO do list prompts======\
-===== priority ======\
 \
+\
+\
+\
+===== priority ======\
 Good. Next. I want to make a function called priority for the to-do list function\
 \
 1.	you can click the task to change its priority \
@@ -20,109 +21,193 @@ Good. Next. I want to make a function called priority for the to-do list functio
 3.	Every time I delete a task, the number of the priority changes. For example, if there are 5 tasks and 5 priorities, I delete one task and then the total number of priority will be 4. \
 4.	I can click the task to select its priority. For example, if there are 5 tasks, and there will be 5 priority ranking from priority #1 to priority #5. And if I choose the priority to priority#1the task will be shift to the first place. And if I choose the priority to priority#5, the task will be shift to the final/last place.\
 \
-Modify from the previous to-do function:\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-
-\f1\fs32 \cf2 \cb3 //////////////////// //////////////////// ////////////////////\
-////////////////// To-Do list  ////////////////////\
-/////////////////// //////////////////// ////////////////////\
+Portential Bugs need to be noticed:\
 \
+1. Don\'92t need to show the priority #1 in the task item\
+2. The function should be: user can click the task item, and it will come up options for users to click the priority. If user click priority #1 among 5 task items. This task will shift to the top of the to-do list. If user click priority #5 among 5 task items. This task will shift to the end/bottum of the to-do list.\
 \
-// Load any existing items from local storage\
-\cf4 var \cf5 items = 
-\f2\i\b \cf6 JSON
-\f1\i0\b0 \cf5 .\cf7 parse\cf5 (
-\f2\i\b \cf6 localStorage
-\f1\i0\b0 \cf5 .\cf7 getItem\cf5 (\cf8 "todoList"\cf5 )) || []\cf4 ;\
-for \cf5 (\cf4 var \cf5 i = \cf9 0\cf4 ; \cf5 i < items.\cf6 length\cf4 ; \cf5 i++) \{\
-  \cf7 addItem\cf5 (items[i].\cf6 value\cf4 , \cf5 items[i].\cf6 completed\cf4 , \cf5 items[i].\cf6 date\cf5 )\cf4 ;\
-\cf5 \}\
+Also if there are any changes in the html code and the css code, you should notify that\
 \
-\cf2 // Add new item to list when form is submitted\
-\cf6 $\cf5 (\cf8 "form"\cf5 ).\cf7 submit\cf5 (\cf4 function\cf5 (e) \{\
-  e.\cf7 preventDefault\cf5 ()\cf4 ;\
-  var \cf5 newItem = \cf6 $\cf5 (\cf8 "#new-item"\cf5 ).\cf7 val\cf5 ().\cf7 trim\cf5 ()\cf4 ;\
-  if \cf5 (newItem !== \cf8 ""\cf5 ) \{\
-    \cf7 addItem\cf5 (newItem\cf4 , false, \cf7 getCurrentDate\cf5 ())\cf4 ;\
-    \cf2 // Save updated list to local storage\
-    \cf7 saveList\cf5 ()\cf4 ;\
-    \cf6 $\cf5 (\cf8 "#new-item"\cf5 ).\cf7 val\cf5 (\cf8 ""\cf5 )\cf4 ;\
-  \cf5 \}\
-\})\cf4 ;\
-\
-\cf2 // Cross out item when checkbox is clicked\
-\cf6 $\cf5 (
-\f2\i\b \cf6 document
-\f1\i0\b0 \cf5 ).\cf7 on\cf5 (\cf8 "click"\cf4 , \cf8 "input[type=checkbox]"\cf4 , function\cf5 () \{\
-  \cf4 var \cf5 checkbox = \cf6 $\cf5 (\cf4 this\cf5 )\cf4 ;\
-  var \cf5 listItem = checkbox.\cf7 closest\cf5 (\cf8 "\cf10 li\cf8 "\cf5 )\cf4 ;\
-  \cf5 listItem.\cf7 toggleClass\cf5 (\cf8 "completed"\cf5 )\cf4 ;\
-  \cf2 // Save updated list to local storage\
-  \cf7 saveList\cf5 ()\cf4 ;\
-\cf5 \})\cf4 ;\
-\
-\cf2 // Delete item when delete button is clicked\
-\cf6 $\cf5 (
-\f2\i\b \cf6 document
-\f1\i0\b0 \cf5 ).\cf7 on\cf5 (\cf8 "click"\cf4 , \cf8 ".delete-button"\cf4 , function\cf5 () \{\
-  \cf4 var \cf5 listItem = \cf6 $\cf5 (\cf4 this\cf5 ).\cf7 closest\cf5 (\cf8 "\cf10 li\cf8 "\cf5 )\cf4 ;\
-  \cf5 listItem.\cf7 remove\cf5 ()\cf4 ;\
-  \cf2 // Save updated list to local storage\
-  \cf7 saveList\cf5 ()\cf4 ;\
-\cf5 \})\cf4 ;\
-\
-function \cf7 addItem\cf5 (text\cf4 , \cf5 completed\cf4 , \cf5 date) \{\
-  \cf4 var \cf5 checkbox = \cf6 $\cf5 (\cf8 "<input>"\cf5 ).\cf7 attr\cf5 (\{\
-    \cf6 type\cf5 : \cf8 "checkbox"\cf4 ,\
-    \cf6 class\cf5 : \cf8 "checkbox"\cf4 ,\
-    \cf6 checked\cf5 : completed\
-  \})\cf4 ;\
-  var \cf5 deleteButton = \cf6 $\cf5 (\cf8 "<button>"\cf5 ).\cf7 attr\cf5 (\{\
-    \cf6 type\cf5 : \cf8 "button"\cf4 ,\
-    \cf6 class\cf5 : \cf8 "delete-button"\
-  \cf5 \}).\cf7 html\cf5 (\cf8 "<i class='material-icons'>delete</i>"\cf5 )\cf4 ;\
-  var \cf5 textSpan = \cf6 $\cf5 (\cf8 "<span>"\cf5 ).\cf7 addClass\cf5 (\cf8 "todo-text"\cf5 ).\cf7 text\cf5 (text)\cf4 ;\
-  var \cf5 dateSpan = \cf6 $\cf5 (\cf8 "<span>"\cf5 ).\cf7 addClass\cf5 (\cf8 "date"\cf5 ).\cf7 text\cf5 (date)\cf4 ;\
-  var \cf5 listItem = \cf6 $\cf5 (\cf8 "<li>"\cf5 ).\cf7 addClass\cf5 (\cf8 "todo-item"\cf5 ).\cf7 append\cf5 (checkbox\cf4 , \cf5 textSpan\cf4 , \cf5 dateSpan\cf4 , \cf5 deleteButton)\cf4 ;\
-  if \cf5 (completed) \{\
-    listItem.\cf7 addClass\cf5 (\cf8 "completed"\cf5 )\cf4 ;\
-  \cf5 \}\
-  \cf6 $\cf5 (\cf8 "#todo-list"\cf5 ).\cf7 append\cf5 (listItem)\cf4 ;\
-\cf5 \}\
-\
-\cf4 function \cf7 saveList\cf5 () \{\
-  \cf4 var \cf5 items = []\cf4 ;\
-  \cf6 $\cf5 (\cf8 "#todo-list \cf10 li\cf8 "\cf5 ).\cf7 each\cf5 (\cf4 function\cf5 () \{\
-    \cf4 var \cf5 listItem = \cf6 $\cf5 (\cf4 this\cf5 )\cf4 ;\
-    var \cf5 checkbox = listItem.\cf7 find\cf5 (\cf8 ".checkbox"\cf5 )\cf4 ;\
-    \cf5 items.\cf7 push\cf5 (\{\
-      \cf6 value\cf5 : listItem.\cf7 find\cf5 (\cf8 "span:first-of-type"\cf5 ).\cf7 text\cf5 ()\cf4 ,\
-      \cf6 completed\cf5 : checkbox.\cf7 is\cf5 (\cf8 ":checked"\cf5 )\cf4 ,\
-      \cf6 date\cf5 : listItem.\cf7 find\cf5 (\cf8 ".date"\cf5 ).\cf7 text\cf5 ()\
-    \})\cf4 ;\
-  \cf5 \})\cf4 ;\
-  
-\f2\i\b \cf6 localStorage
-\f1\i0\b0 \cf5 .\cf7 setItem\cf5 (\cf8 "todoList"\cf4 , 
-\f2\i\b \cf6 JSON
-\f1\i0\b0 \cf5 .\cf7 stringify\cf5 (items))\cf4 ;\
-\cf5 \}\
-\
-\cf4 function \cf7 getCurrentDate\cf5 () \{\
-  \cf4 var \cf5 today = \cf4 new 
-\f2\i\b \cf6 Date
-\f1\i0\b0 \cf5 ()\cf4 ;\
-  var \cf5 dd = \cf7 String\cf5 (today.\cf7 getDate\cf5 ()).\cf7 padStart\cf5 (\cf9 2\cf4 , \cf8 "0"\cf5 )\cf4 ;\
-  var \cf5 mm = \cf7 String\cf5 (today.\cf7 getMonth\cf5 () + \cf9 1\cf5 ).\cf7 padStart\cf5 (\cf9 2\cf4 , \cf8 "0"\cf5 )\cf4 ; \cf2 //January is 0!\
-  \cf4 var \cf5 yyyy = today.\cf7 getFullYear\cf5 ()\cf4 ;\
-  \cf5 today = mm + \cf8 "/" \cf5 + dd + \cf8 "/" \cf5 + yyyy\cf4 ;\
-  return \cf5 today\cf4 ;\
-\cf5 \}\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-
-\f0\fs24 \cf0 \cb1 \
-======\
+Modified from the below js code:\
 \
 \
 ======= \
+There are bugs:\
+\
+1.when I create number of task, the previous n task has only n number priority. For example, I create 5 tasks, but when I click 1 it only has Priority #1 not all the Priority (Priority #1 to Priority #5)\
+\
+2. When there are three tasks. I can modify the third/final task by clicking the Priority #1 and Priority #2. But when I click the Priority #3. It disappear. It should be remain in the same position. Also the when I click the nth task to it nth position, for example seance task to the Priority #2, it disappear. It should be remains the position. \
+	\
+\
+\
+=====\
+The previous problem exists and it cause the website Pause by adding second task item\
+\
+\
+\
+\
+======\
+The questions exists:\
+\
+1.  When there are three tasks. I can modify the third/final task by clicking the Priority #1 and Priority #2. But when I click the Priority #3. It disappear. It should be remain in the same position. Also the when I click the nth task to it nth position, for example seance task to the Priority #2, it disappear. It should be remains the position. \
+\
+2. When I click the task item, it comes up of nth priority, this is good. However, it forces the user to click the Priority #1 or Priority #nth to the task item. I want to specify that, when user click other space in the webpage , the function of shifting the Priority should be disappeared.\
+\
+===\
+The program still here:\
+\
+After fixing to should be:
+\f1\fs32 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\
+\
+\
+=======\
+Okay the remaining bugs:\
+\
+1. I add three tasks. But when I click the first task. It shows Priority #1, Priority #2. And when I click third task item, it shows Priority #1 to Priority #4\
+\
+2. When I click the priority, the task is not shifting. For example, if I click third task with Priority #1, it should shift to the beginning and the rest task will shift down accordingly.\
+\
+\
+\
+======\
+One small bug in the priority shifting:\
+\
+- I can change the priority of the first task, but still inaccurate: can\'92t shift the second priority but can shift to third and forth. \
+\
+\
+\
+\
+=======\
+Small bug in the priority shifting in the final task item:\
+\
+- when I click item 4 with a priority #3, it shift up to priority #2 for a total of 4 items. \
+- specifically, when there is n items, user click the bottom item (nth item) to priority# n-1 it will shit to priority# n-2\
+\
+\
+\
+====\
+Function works great for shifting down. But when shifting up, the bug exits: when user clicks nth item to n-1 priority, it will shift to n-2\
+\
+\
+\
+======\
+But why there is a new error: (upside down to the previous one)\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Function works great for shifting up. But when shifting down, the bug exits: when user clicks nth item to n+1 (like #1 to #2) priority, it will shift to n-2 (#3)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+=====\
+====new function====\
+Now, create a new function for this to-do lists:\
+\
+1. the size of the task item is different based on their: priority #1 is the biggest and priority #last is the smallest. You should come up with a way to size down the task item accordingly to their priority.\
+\
+2. When user shift the priority, the size of the task item should change accordingly.  \
+\
+\
+=====\
+good but when the user click the priority, the size of the priority numbers should not change\
+\
+=====\
+maybe this is a minor bug: when the  task text is larger the function of Delete item when delete button is clicked is not function well: the remove line is not parallel to the dates\
+\
+\
+\
+\
+\
+\
+=======\
+Also, I want to make a new function for this card:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs32 \cf3 \cb4 <!--  inspiration -->\
+  \cf5 <div \cf6 class\cf7 ="card"\cf5 >\
+    <div \cf6 class\cf7 ="card-title"\cf5 ><h2>\cf8 Ideas & Words\cf5 </h2></div>\
+     <p>\
+       \cf8 "Don't use your energy to worry. Use your energy to believe, create, trust, grow, manifest, and heal."\
+     \cf5 </p>\
+  </div>\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+requirements:\
+\
+1. Make it easy to input the additional text of sentence. User could use the bar to input. The input bar should be long and clear for the user to input\
+\
+2. After inputing the text. The text should be added to the additional line with padding of the pervious text\
+\
+3. It looks like the to-do list we created but without the complete function, you can go back to use the function created before\
+\
+4. User can drag the sentence up and down to the appropriate location. That might be the difficult part.\
+\
+\
+====\
+now add a remove function for the input text:\
+\
+1. when user double click the text, will have the option to delete\
+\
+=====\
+modify:\
+\
+1. When user double click it, they can edit the whole text\
+\
+2. When user double click it, they have the option to click the box \'93delete\'94 to remove the text\
+\
+\
+===\
+1. Notice that the box \'93delete\'94  will come up when user double clicks \
+2. When user double click to modify the text, they can click to the specific location/place of the text (be more user friendly)\
+\
+\
+\
+\
+====\
+It has bug:\
+\
+1. after Double clicking, the box appear, when user click it, it has no effect\
+\
+2.the box icon for removing hould be cross \'93x\'94\
+\
+3.the text and the text entering bar is too crowded \
+\
+\
+===\
+I think you misundersatnind:\
+\
+1. The cross icon is for removing the whole idea text\
+\
+2. When user double clicks: they have two option: 1. To edit the text (if they finish editing, they can click the empty space for finishing) 2. They can also click the cross icon \'93x\'94 for deleting the whole text\
+\
+\
+===\
+499 x 44\
+\
+also:\
+\pard\pardeftab720\partightenfactor0
+\cf0 Input bar\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 1. Make it the shape like google search circle on the corner \
+2. Located in the center\
+\
+Input bar text:\
+ 1. larger \
+2. With right space \
+\
+Cross icon:\
+1. Larger\
+\
+\
+\
+\
+\
+\
+\
 }

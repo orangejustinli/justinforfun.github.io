@@ -158,7 +158,6 @@ $(document).ready(function() {
   ////////////////// To-Do list  ////////////////////
   /////////////////// //////////////////// ////////////////////
 
-
   // Load any existing items from local storage
   var items = JSON.parse(localStorage.getItem("todoList")) || [];
   for (var i = 0; i < items.length; i++) {
@@ -166,7 +165,7 @@ $(document).ready(function() {
   }
 
   // Add new item to list when form is submitted
-  $("form").submit(function(e) {
+  $("form").submit(function (e) {
     e.preventDefault();
     var newItem = $("#new-item").val().trim();
     if (newItem !== "") {
@@ -178,7 +177,7 @@ $(document).ready(function() {
   });
 
   // Cross out item when checkbox is clicked
-  $(document).on("click", "input[type=checkbox]", function() {
+  $(document).on("click", "input[type=checkbox]", function () {
     var checkbox = $(this);
     var listItem = checkbox.closest("li");
     listItem.toggleClass("completed");
@@ -187,53 +186,231 @@ $(document).ready(function() {
   });
 
   // Delete item when delete button is clicked
-  $(document).on("click", ".delete-button", function() {
+  $(document).on("click", ".delete-button", function () {
     var listItem = $(this).closest("li");
     listItem.remove();
-    // Save updated list to local storage
+    // Save updated list t  o local storage
     saveList();
   });
 
-  function addItem(text, completed, date) {
-    var checkbox = $("<input>").attr({
-      type: "checkbox",
-      class: "checkbox",
-      checked: completed
-    });
-    var deleteButton = $("<button>").attr({
-      type: "button",
-      class: "delete-button"
-    }).html("<i class='material-icons'>delete</i>");
-    var textSpan = $("<span>").addClass("todo-text").text(text);
-    var dateSpan = $("<span>").addClass("date").text(date);
-    var listItem = $("<li>").addClass("todo-item").append(checkbox, textSpan, dateSpan, deleteButton);
-    if (completed) {
-      listItem.addClass("completed");
-    }
-    $("#todo-list").append(listItem);
-  }
+  // ... (the rest of the code remains the same)
 
-  function saveList() {
-    var items = [];
-    $("#todo-list li").each(function() {
+  // Toggle priority menu when task is clicked
+  $(document).on("click", ".todo-item", function (event) {
+    if (!$(event.target).is("input[type=checkbox]") && !$(event.target).is(".delete-button")) {
       var listItem = $(this);
-      var checkbox = listItem.find(".checkbox");
-      items.push({
-        value: listItem.find("span:first-of-type").text(),
-        completed: checkbox.is(":checked"),
-        date: listItem.find(".date").text()
-      });
-    });
-    localStorage.setItem("todoList", JSON.stringify(items));
+      var priorityMenu = listItem.find(".priority-menu");
+      $(".priority-menu").not(priorityMenu).hide();
+      priorityMenu.toggle();
+      fillPriorityOptions(priorityMenu);
+    }
+  });
+
+  // Close priority menu when clicking outside the task item
+  $(document).on("click", function (event) {
+    if (!$(event.target).closest(".todo-item").length) {
+      $(".priority-menu").hide();
+    }
+  });
+
+  // Update priority when a priority option is clicked
+  $(document).on("click", ".priority-option", function () {
+    var option = $(this);
+    var listItem = option.closest("li");
+    var priority = option.data("priority");
+    var currentPriority = $("#todo-list li").index(listItem) + 1;
+
+    if (priority === currentPriority) {
+      $(".priority-menu").hide();
+      return;
+    }
+
+    listItem.remove();
+    if (priority === 1) {
+      $("#todo-list").prepend(listItem);
+    } else if (priority > currentPriority) {
+      $("#todo-list li:nth-child(" + (priority - 1) + ")").after(listItem);
+    } else {
+      $("#todo-list li:nth-child(" + (priority) + ")").before(listItem);
+    }
+
+    $(".priority-menu").hide();
+    // save
+    saveList();
+  });
+
+
+  //////////////////// //////////////////// ////////////////////
+  ////////////////// input     ////////////////////
+  /////////////////// //////////////////// ////////////////////
+
+  // Load existing items from local storage
+  var ideas = JSON.parse(localStorage.getItem("ideas")) || [];
+  for (var i = 0; i < ideas.length; i++) {
+    addIdea(ideas[i]);
   }
 
-  function getCurrentDate() {
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    var yyyy = today.getFullYear();
-    today = mm + "/" + dd + "/" + yyyy;
-    return today;
-  }
+  // Add new idea to the list when the form is submitted
+  $("#ideas-form").submit(function(e) {
+    e.preventDefault();
+    var newIdea = $("#new-idea").val().trim();
+    if (newIdea !== "") {
+      addIdea(newIdea);
+      // Save updated list to local storage
+      saveIdeas();
+      $("#new-idea").val("");
+    }
+  });
 
+  // Make ideas sortable
+  $("#ideas-container").sortable({
+    update: function(event, ui) {
+      // Save updated list to local storage
+      saveIdeas();
+    }
+  });
+
+  // Toggle edit mode when double-clicked
+  $("#ideas-container").on("dblclick", ".idea-text", function() {
+    $(this).attr("contenteditable", "true").focus();
+    $(this).siblings(".delete-button").show();
+  });
+
+  // Hide delete button and save changes when focus is lost
+  $("#ideas-container").on("blur", ".idea-text", function() {
+    $(this).attr("contenteditable", "false");
+    $(this).siblings(".delete-button").hide();
+    saveIdeas(); // Save updated list to local storage
+  });
+
+  // Remove a text item when the delete button is clicked
+  $(document).on("click", ".delete-button", function() {
+    $(this).closest(".idea-item").remove();
+    saveIdeas(); // Save updated list to local storage
+  });
+
+
+  //end
 });
+
+
+
+
+
+
+
+// to-do list function
+// Add a new function to update the task sizes based on their priority
+function updateTaskSizes() {
+  var listItems = $("#todo-list li");
+  var totalItems = listItems.length;
+
+  listItems.each(function (index) {
+    var listItem = $(this);
+    var taskContent = listItem.find(".task-content");
+    var priority = index + 1;
+    var fontSize = 5 - (index * 1);
+    var padding = 20 - (index * 5);
+
+    if (fontSize < 0.8) {
+      fontSize = 0.8;
+    }
+    if (padding < 10) {
+      padding = 10;
+    }
+
+    taskContent.css({
+      "font-size": fontSize + "rem",
+      "padding": padding + "px"
+    });
+  });
+}
+
+function addItem(text, completed, date) {
+  var checkbox = $("<input>").attr({
+    type: "checkbox",
+    class: "checkbox",
+    checked: completed,
+  });
+  var deleteButton = $("<button>")
+    .attr({
+      type: "button",
+      class: "delete-button",
+    })
+    .html("<i class='material-icons'>delete</i>");
+  var textSpan = $("<span>").addClass("todo-text").text(text);
+  var dateSpan = $("<span>").addClass("date").text(date);
+  // new
+  var taskContent = $("<div>").addClass("task-content").append(textSpan, dateSpan);
+
+  var priorityMenu = $("<div>").addClass("priority-menu").hide();
+  // var listItem = $("<li>")
+  //   .addClass("todo-item")
+  //   .append(checkbox, textSpan, dateSpan, deleteButton, priorityMenu);
+  var listItem = $("<li>").addClass("todo-item").append(checkbox, taskContent, deleteButton);
+
+  if (completed) {
+    listItem.addClass("completed");
+  }
+  listItem.append(priorityMenu)
+  $("#todo-list").append(listItem);
+  fillPriorityOptions(priorityMenu);
+  // new
+  updateTaskSizes();
+}
+
+function saveList() {
+  var items = [];
+  $("#todo-list li").each(function () {
+    var listItem = $(this);
+    var checkbox = listItem.find(".checkbox");
+    items.push({
+      value: listItem.find("span:first-of-type").text(),
+      completed: checkbox.is(":checked"),
+      date: listItem.find(".date").text(),
+    });
+  });
+  localStorage.setItem("todoList", JSON.stringify(items));
+  updateTaskSizes();
+}
+
+
+function getCurrentDate() {
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
+  var yyyy = today.getFullYear();
+  today = mm + "/" + dd + "/" + yyyy;
+  return today;
+}
+
+// ... (the rest of the code remains the same)
+function fillPriorityOptions(priorityMenu) {
+  priorityMenu.empty();
+  var siblingsCount = $("#todo-list li").length;
+  for (var i = 1; i <= siblingsCount; i++) {
+    var priorityOption = $("<div>")
+      .addClass("priority-option")
+      .text("Priority #" + i)
+      .data("priority", i);
+    priorityMenu.append(priorityOption);
+  }
+}
+
+
+// input text function
+
+function addIdea(text) {
+  var deleteButton = $("<span>").addClass("delete-button").text("x").hide();
+  var ideaText = $("<p>").addClass("idea-text").text(text).attr("contenteditable", "false");
+  var ideaItem = $("<div>").addClass("idea-item").append(ideaText, deleteButton);
+  $("#ideas-container").append(ideaItem);
+}
+
+function saveIdeas() {
+  var ideas = [];
+  $("#ideas-container .idea-text").each(function() {
+    ideas.push($(this).text());
+  });
+  localStorage.setItem("ideas", JSON.stringify(ideas));
+}

@@ -193,16 +193,22 @@ h2 {
   margin-left: 1.1rem;
 }
 
-#todo-list li.completed {
+/*#todo-list li.completed {*/
+/*  text-decoration: line-through;*/
+/*  color: gray;*/
+/*}*/
+
+.todo-item.completed .todo-text {
   text-decoration: line-through;
-  color: gray;
+  color: #888;
 }
 
 .todo-item {
   flex: 1;
   padding: 0.5rem;
   font-size: 1.8rem;
-  margin-left:100px
+  margin-left:100px;
+  align-items: center;
 }
 
 .checkbox {
@@ -221,10 +227,13 @@ h2 {
 }
 
 .delete-button {
-  font-size: 3px; /* adjust to your preferred size */
-  padding: 2px; /* adjust to your preferred padding */
-  margin-left: 15px; /* adjust to your preferred margin */
+  background: none;
+  border: none;
   cursor: pointer;
+  font-size: 14px;
+  color: red;
+  padding: 0;
+  margin-left: 5px;
 }
 
 .delete-item:hover {
@@ -266,8 +275,85 @@ input[type=checkbox]:hover {
 
 /*to-do list data*/
 .date {
+  display: inline-block; /* Add this line */
   font-size: 1.4rem;
   color: #bbb;
   margin-left: 1.5rem;
+  vertical-align: middle; /* Add this line */
 }
 
+/*new */
+
+.priority-select {
+  display: none;
+  position: absolute;
+  background-color: white;
+  z-index: 100;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.priority-option {
+  cursor: pointer;
+  padding: 2px 5px;
+}
+
+.priority-option:hover {
+  background-color: #f1f1f1;
+}
+
+/*for sizing of task items*/
+.task-content {
+  display: inline-block;
+}
+
+
+
+/*ideas input*/
+
+#ideas-form input {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 5px;
+  font-size: 1em;
+}
+
+.idea-text {
+  padding: 5px;
+  /*margin: 5px 0;*/
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  margin-left: 15px;
+  font-size: 24px; /* Larger text */
+}
+
+#new-idea {
+  max-width: 600px; /* Adjust the value to your desired width */
+  width: 499px;
+  height: 44px;
+  border-radius: 22px; /* Rounded corners */
+  /*margin: 0 auto; !* Center the input bar *!*/
+  font-size: 18px; /* Larger text */
+  padding: 0 16px; /* Add padding to the left and right */
+  margin-left: 15px;
+}
+
+#new-idea::placeholder {
+  font-size: 16px; /* Adjust the font size to your desired value */
+  padding-left: 0px; /* Adjust the value to your desired padding */
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 30px;
+  color: red;
+  padding: 0;
+  margin-left: 18px;
+}
+
+
+.delete-icon {
+  font-size: 100px; /* Larger icon */
+}
