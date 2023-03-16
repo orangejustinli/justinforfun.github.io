@@ -256,8 +256,12 @@ $(document).ready(function() {
     var newIdea = $("#new-idea").val().trim();
     if (newIdea !== "") {
       addIdea(newIdea);
-      // Save updated list to local storage
-      saveIdeas();
+      // // Save updated list to local storage
+      // saveIdeas();
+
+      // new: Save the new idea to Firebase
+      ideasRef.push(newIdea);
+
       $("#new-idea").val("");
     }
   });
@@ -265,8 +269,14 @@ $(document).ready(function() {
   // Make ideas sortable
   $("#ideas-container").sortable({
     update: function(event, ui) {
-      // Save updated list to local storage
-      saveIdeas();
+      // Get the updated list of ideas
+      const updatedIdeas = [];
+      $("#ideas-container .idea-text").each(function() {
+        updatedIdeas.push($(this).text());
+      });
+
+      // Save the updated list to Firebase
+      ideasRef.set(updatedIdeas);
     }
   });
 
@@ -423,6 +433,7 @@ function addIdea(text) {
   $("#ideas-container").append(ideaItem);
 }
 
+// Remove this function
 // function saveIdeas() {
 //   var ideas = [];
 //   $("#ideas-container .idea-text").each(function() {
