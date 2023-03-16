@@ -309,14 +309,14 @@ function updateTaskSizes() {
     var listItem = $(this);
     var taskContent = listItem.find(".task-content");
     var priority = index + 1;
-    var fontSize = 5 - (index * 1);
-    var padding = 20 - (index * 5);
+    var fontSize = 7 - (index * 1.7);
+    var padding = 26 - (index * 10);
 
-    if (fontSize < 0.8) {
-      fontSize = 0.8;
+    if (fontSize < 1.5) {
+      fontSize = 1.4;
     }
-    if (padding < 10) {
-      padding = 10;
+    if (padding < 5) {
+      padding = 5;
     }
 
     taskContent.css({
@@ -397,6 +397,22 @@ function fillPriorityOptions(priorityMenu) {
   }
 }
 
+// idea sharing
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC-a3C2WQEJErKklGfeNs4Wf1EpVgSwFjs",
+  authDomain: "web-ideas-input.firebaseapp.com",
+  projectId: "web-ideas-input",
+  storageBucket: "web-ideas-input.appspot.com",
+  messagingSenderId: "451479903827",
+  appId: "1:451479903827:web:c049d65b56029d12d430a6",
+  measurementId: "G-7XLK99PMCG"
+};
+firebase.initializeApp(firebaseConfig);
+
+
+const db = firebase.database();
+const ideasRef = db.ref("ideas");
 
 // input text function
 
@@ -407,10 +423,28 @@ function addIdea(text) {
   $("#ideas-container").append(ideaItem);
 }
 
+// function saveIdeas() {
+//   var ideas = [];
+//   $("#ideas-container .idea-text").each(function() {
+//     ideas.push($(this).text());
+//   });
+//   localStorage.setItem("ideas", JSON.stringify(ideas));
+// }
+
 function saveIdeas() {
-  var ideas = [];
-  $("#ideas-container .idea-text").each(function() {
+  const ideas = [];
+  $("#ideas-container .idea-text").each(function () {
     ideas.push($(this).text());
   });
-  localStorage.setItem("ideas", JSON.stringify(ideas));
+  ideasRef.set(ideas);
 }
+
+ideasRef.on("value", (snapshot) => {
+  const ideas = snapshot.val() || [];
+  $("#ideas-container").empty();
+  for (const idea of ideas) {
+    addIdea(idea);
+  }
+});
+
+
