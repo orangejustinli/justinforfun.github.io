@@ -299,8 +299,32 @@ $(document).ready(function() {
     saveIdeas(); // Save updated list to local storage
   });
 
+  // idea sharing
+  const firebaseConfig = {
+    apiKey: "AIzaSyC-a3C2WQEJErKklGfeNs4Wf1EpVgSwFjs",
+    authDomain: "web-ideas-input.firebaseapp.com",
+    projectId: "web-ideas-input",
+    storageBucket: "web-ideas-input.appspot.com",
+    messagingSenderId: "451479903827",
+    appId: "1:451479903827:web:c049d65b56029d12d430a6",
+    measurementId: "G-7XLK99PMCG"
+  };
+  firebase.initializeApp(firebaseConfig);
+
+
+  const db = firebase.database();
+  const ideasRef = db.ref("ideas");
+
+  ideasRef.on("value", (snapshot) => {
+    const ideas = snapshot.val() || [];
+    $("#ideas-container").empty();
+    for (const idea of ideas) {
+      addIdea(idea);
+    }
+  });
 
   //end
+  // Your other functions and event listeners
 });
 
 
@@ -407,25 +431,7 @@ function fillPriorityOptions(priorityMenu) {
   }
 }
 
-// idea sharing
-
-const firebaseConfig = {
-  apiKey: "AIzaSyC-a3C2WQEJErKklGfeNs4Wf1EpVgSwFjs",
-  authDomain: "web-ideas-input.firebaseapp.com",
-  projectId: "web-ideas-input",
-  storageBucket: "web-ideas-input.appspot.com",
-  messagingSenderId: "451479903827",
-  appId: "1:451479903827:web:c049d65b56029d12d430a6",
-  measurementId: "G-7XLK99PMCG"
-};
-firebase.initializeApp(firebaseConfig);
-
-
-const db = firebase.database();
-const ideasRef = db.ref("ideas");
-
 // input text function
-
 function addIdea(text) {
   var deleteButton = $("<span>").addClass("delete-button").text("x").hide();
   var ideaText = $("<p>").addClass("idea-text").text(text).attr("contenteditable", "false");
@@ -449,13 +455,5 @@ function saveIdeas() {
   });
   ideasRef.set(ideas);
 }
-
-ideasRef.on("value", (snapshot) => {
-  const ideas = snapshot.val() || [];
-  $("#ideas-container").empty();
-  for (const idea of ideas) {
-    addIdea(idea);
-  }
-});
 
 
