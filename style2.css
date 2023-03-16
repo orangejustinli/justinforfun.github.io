@@ -319,6 +319,7 @@ input[type=checkbox]:hover {
 }
 
 .idea-text {
+  max-width: 810px;
   padding: 5px;
   /*margin: 5px 0;*/
   background-color: #f5f5f5;

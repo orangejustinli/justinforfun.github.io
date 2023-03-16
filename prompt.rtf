@@ -1,10 +1,16 @@
 {\rtf1\ansi\ansicpg1252\cocoartf2639
 \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 HelveticaNeue;\f2\fmodern\fcharset0 Courier;
-}
+\f3\fnil\fcharset0 Monaco;\f4\fmodern\fcharset0 Courier-BoldOblique;}
 {\colortbl;\red255\green255\blue255;\red199\green203\blue211;\red109\green109\blue109;\red32\green32\blue32;
-\red225\green179\blue88;\red172\green172\blue172;\red149\green184\blue79;\red153\green168\blue186;}
+\red225\green179\blue88;\red172\green172\blue172;\red149\green184\blue79;\red153\green168\blue186;\red199\green203\blue211;
+\red52\green54\blue66;\red0\green0\blue0;\red109\green109\blue109;\red32\green32\blue32;\red191\green100\blue38;
+\red153\green168\blue186;\red133\green96\blue154;\red254\green187\blue91;\red88\green118\blue71;\red86\green132\blue173;
+\red225\green179\blue88;}
 {\*\expandedcolortbl;;\cssrgb\c81961\c83529\c85882;\csgenericrgb\c42745\c42745\c42745;\csgenericrgb\c12549\c12549\c12549;
-\csgenericrgb\c88235\c70196\c34510;\csgenericrgb\c67451\c67451\c67451;\csgenericrgb\c58431\c72157\c30980;\csgenericrgb\c60000\c65882\c72941;}
+\csgenericrgb\c88235\c70196\c34510;\csgenericrgb\c67451\c67451\c67451;\csgenericrgb\c58431\c72157\c30980;\csgenericrgb\c60000\c65882\c72941;\cssrgb\c81961\c83529\c85882;
+\cssrgb\c26667\c27451\c32941;\cssrgb\c0\c0\c0;\csgenericrgb\c42745\c42745\c42745;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c74902\c39216\c14902;
+\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c52157\c37647\c60392;\csgenericrgb\c99608\c73333\c35686;\csgenericrgb\c34510\c46275\c27843;\csgenericrgb\c33725\c51765\c67843;
+\csgenericrgb\c88235\c70196\c34510;}
 \margl1440\margr1440\vieww12260\viewh14600\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
@@ -214,11 +220,182 @@ Few bugs need to to be fix:\
 \
 \
 \
+==============\
+For the part in 
+\f1\fs32 \cf9 \cb10 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec9  inside the 
+\f3\fs21 \cf0 \strokec11 $(document).ready()
+\f1\fs32 \cf9 \strokec9  block.
+\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+Is it like this:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f2\fs32 \cf12 \cb13 //////////////////// //////////////////// ////////////////////\
+////////////////// input     ////////////////////\
+/////////////////// //////////////////// ////////////////////\
+\
+// Load existing items from local storage\
+\cf14 var \cf15 ideas = 
+\f4\i\b \cf16 JSON
+\f2\i0\b0 \cf15 .\cf17 parse\cf15 (
+\f4\i\b \cf16 localStorage
+\f2\i0\b0 \cf15 .\cf17 getItem\cf15 (\cf18 "ideas"\cf15 )) || []\cf14 ;\
+for \cf15 (\cf14 var \cf15 i = \cf19 0\cf14 ; \cf15 i < ideas.\cf16 length\cf14 ; \cf15 i++) \{\
+  \cf17 addIdea\cf15 (ideas[i])\cf14 ;\
+\cf15 \}\
+\
+\cf12 // Add new idea to the list when the form is submitted\
+\cf16 $\cf15 (\cf18 "#ideas-form"\cf15 ).\cf17 submit\cf15 (\cf14 function\cf15 (e) \{\
+  e.\cf17 preventDefault\cf15 ()\cf14 ;\
+  var \cf15 newIdea = \cf16 $\cf15 (\cf18 "#new-idea"\cf15 ).\cf17 val\cf15 ().\cf17 trim\cf15 ()\cf14 ;\
+  if \cf15 (newIdea !== \cf18 ""\cf15 ) \{\
+    \cf17 addIdea\cf15 (newIdea)\cf14 ;\
+    \cf12 // // Save updated list to local storage\
+    // saveIdeas();\
+\
+    // new: Save the new idea to Firebase\
+    
+\f4\i\b \cf16 ideasRef
+\f2\i0\b0 \cf15 .\cf17 push\cf15 (newIdea)\cf14 ;\
+\
+    \cf16 $\cf15 (\cf18 "#new-idea"\cf15 ).\cf17 val\cf15 (\cf18 ""\cf15 )\cf14 ;\
+  \cf15 \}\
+\})\cf14 ;\
+\
+\cf12 // Make ideas sortable\
+\cf16 $\cf15 (\cf18 "#ideas-container"\cf15 ).\cf16 sortable\cf15 (\{\
+  \cf17 update\cf15 : \cf14 function\cf15 (event\cf14 , \cf15 ui) \{\
+    \cf12 // Get the updated list of ideas\
+    \cf14 const \cf15 updatedIdeas = []\cf14 ;\
+    \cf16 $\cf15 (\cf18 "#ideas-container .\cf20 idea-text\cf18 "\cf15 ).\cf17 each\cf15 (\cf14 function\cf15 () \{\
+      updatedIdeas.\cf17 push\cf15 (\cf16 $\cf15 (\cf14 this\cf15 ).\cf17 text\cf15 ())\cf14 ;\
+    \cf15 \})\cf14 ;\
+\
+    \cf12 // Save the updated list to Firebase\
+    
+\f4\i\b \cf16 ideasRef
+\f2\i0\b0 \cf15 .\cf17 set\cf15 (updatedIdeas)\cf14 ;\
+  \cf15 \}\
+\})\cf14 ;\
+\
+\cf12 // Toggle edit mode when double-clicked\
+\cf16 $\cf15 (\cf18 "#ideas-container"\cf15 ).\cf17 on\cf15 (\cf18 "dblclick"\cf14 , \cf18 ".idea-text"\cf14 , function\cf15 () \{\
+  \cf16 $\cf15 (\cf14 this\cf15 ).\cf17 attr\cf15 (\cf18 "contenteditable"\cf14 , \cf18 "true"\cf15 ).\cf17 focus\cf15 ()\cf14 ;\
+  \cf16 $\cf15 (\cf14 this\cf15 ).\cf17 siblings\cf15 (\cf18 ".\cf20 delete-button\cf18 "\cf15 ).\cf17 show\cf15 ()\cf14 ;\
+\cf15 \})\cf14 ;\
+\
+\cf12 // Hide delete button and save changes when focus is lost\
+\cf16 $\cf15 (\cf18 "#ideas-container"\cf15 ).\cf17 on\cf15 (\cf18 "blur"\cf14 , \cf18 ".idea-text"\cf14 , function\cf15 () \{\
+  \cf16 $\cf15 (\cf14 this\cf15 ).\cf17 attr\cf15 (\cf18 "contenteditable"\cf14 , \cf18 "false"\cf15 )\cf14 ;\
+  \cf16 $\cf15 (\cf14 this\cf15 ).\cf17 siblings\cf15 (\cf18 ".\cf20 delete-button\cf18 "\cf15 ).\cf17 hide\cf15 ()\cf14 ;\
+  \cf17 saveIdeas\cf15 ()\cf14 ; \cf12 // Save updated list to local storage\
+\cf15 \})\cf14 ;\
+\
+\cf12 // Remove a text item when the delete button is clicked\
+\cf16 $\cf15 (
+\f4\i\b \cf16 document
+\f2\i0\b0 \cf15 ).\cf17 on\cf15 (\cf18 "click"\cf14 , \cf18 ".delete-button"\cf14 , function\cf15 () \{\
+  \cf16 $\cf15 (\cf14 this\cf15 ).\cf17 closest\cf15 (\cf18 ".\cf20 idea-item\cf18 "\cf15 ).\cf17 remove\cf15 ()\cf14 ;\
+  \cf17 saveIdeas\cf15 ()\cf14 ; \cf12 // Save updated list to local storage\
+\cf15 \})\cf14 ;\
+\
+\cf12 // idea sharing\
+\cf17 loadIdeas\cf15 () \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
 \
 \
 \
 \
 ===========\
 \
+Can you check all the idea-text function correct?\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f2\fs32 \cf12 \cb13 // idea sharing\
+\cf14 const 
+\f4\i\b \cf16 firebaseConfig 
+\f2\i0\b0 \cf15 = \{\
+  \cf16 apiKey\cf15 : \cf18 "AIzaSyC-a3C2WQEJErKklGfeNs4Wf1EpVgSwFjs"\cf14 ,\
+  \cf16 authDomain\cf15 : \cf18 "web-ideas-input.firebaseapp.com"\cf14 ,\
+  \cf16 projectId\cf15 : \cf18 "web-ideas-input"\cf14 ,\
+  \cf16 storageBucket\cf15 : \cf18 "web-ideas-input.appspot.com"\cf14 ,\
+  \cf16 messagingSenderId\cf15 : \cf18 "451479903827"\cf14 ,\
+  \cf16 appId\cf15 : \cf18 "1:451479903827:web:c049d65b56029d12d430a6"\cf14 ,\
+  \cf16 measurementId\cf15 : \cf18 "G-7XLK99PMCG"\
+\cf15 \}\cf14 ;\
+\cf16 firebase\cf15 .\cf17 initializeApp\cf15 (
+\f4\i\b \cf16 firebaseConfig
+\f2\i0\b0 \cf15 )\cf14 ;\
+\
+\
+const 
+\f4\i\b \cf16 db 
+\f2\i0\b0 \cf15 = \cf16 firebase\cf15 .\cf16 database\cf15 ()\cf14 ;\
+const 
+\f4\i\b \cf16 ideasRef 
+\f2\i0\b0 \cf15 = 
+\f4\i\b \cf16 db
+\f2\i0\b0 \cf15 .\cf17 ref\cf15 (\cf18 "ideas"\cf15 )\cf14 ;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f2\fs32 \cf12 \cb13 // input text function\
+\cf14 function \cf17 addIdea\cf15 (text) \{\
+  \cf14 var \cf15 deleteButton = \cf16 $\cf15 (\cf18 "<span>"\cf15 ).\cf17 addClass\cf15 (\cf18 "delete-button"\cf15 ).\cf17 text\cf15 (\cf18 "x"\cf15 ).\cf17 hide\cf15 ()\cf14 ;\
+  var \cf15 ideaText = \cf16 $\cf15 (\cf18 "<p>"\cf15 ).\cf17 addClass\cf15 (\cf18 "idea-text"\cf15 ).\cf17 text\cf15 (text).\cf17 attr\cf15 (\cf18 "contenteditable"\cf14 , \cf18 "false"\cf15 )\cf14 ;\
+  var \cf15 ideaItem = \cf16 $\cf15 (\cf18 "<div>"\cf15 ).\cf17 addClass\cf15 (\cf18 "idea-item"\cf15 ).\cf17 append\cf15 (ideaText\cf14 , \cf15 deleteButton)\cf14 ;\
+  \cf16 $\cf15 (\cf18 "#ideas-container"\cf15 ).\cf17 append\cf15 (ideaItem)\cf14 ;\
+\cf15 \}\
+\
+\cf12 // Replace the local storage-based saving and loading functions with Firebase\
+\cf14 function \cf17 loadIdeas\cf15 () \{\
+  
+\f4\i\b \cf16 ideasRef
+\f2\i0\b0 \cf15 .\cf17 on\cf15 (\cf18 "value"\cf14 , \cf15 (snapshot) => \{\
+    \cf14 const \cf15 ideas = snapshot.\cf17 val\cf15 () || []\cf14 ;\
+    \cf16 $\cf15 (\cf18 "#ideas-container"\cf15 ).\cf17 empty\cf15 ()\cf14 ;\
+    for \cf15 (\cf14 const \cf15 idea \cf14 of \cf15 ideas) \{\
+      \cf17 addIdea\cf15 (idea)\cf14 ;\
+    \cf15 \}\
+  \})\cf14 ;\
+\cf15 \}\
+\
+\
+\cf14 function \cf17 saveIdeas\cf15 () \{\
+  \cf14 const \cf15 ideas = []\cf14 ;\
+  \cf16 $\cf15 (\cf18 "#ideas-container .\cf20 idea-text\cf18 "\cf15 ).\cf17 each\cf15 (\cf14 function \cf15 () \{\
+    ideas.\cf17 push\cf15 (\cf16 $\cf15 (\cf14 this\cf15 ).\cf17 text\cf15 ())\cf14 ;\
+  \cf15 \})\cf14 ;\
+  
+\f4\i\b \cf16 ideasRef
+\f2\i0\b0 \cf15 .\cf17 set\cf15 (ideas)\cf14 ;\
+\cf15 \}\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+Why the ideas text content disappear after I refresh the web page?\
+\
+====\
+Some error in the delete function of the ideas-input function: every time I delete a single text content, it transform to another one.\
+\
+\
+\
+====\
+The delete error exits: \
+\
+1. When I enter the idea text: it comes with two items \
+\
+2. Delete can remove the second item but not the first item (these two item is the same generated by the 1.)\
+\
+\
+\
+\
+====\
+Error in deleting item: becomes a loop through two items: can not fully delete: it will become another one \
 \
 }
